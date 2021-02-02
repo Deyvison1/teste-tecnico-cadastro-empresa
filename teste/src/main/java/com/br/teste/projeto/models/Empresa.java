@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name =  "empresas")
+@Table(name =  "empresa")
 public class Empresa {
 
 	
