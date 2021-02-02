@@ -1,0 +1,47 @@
+
+<div style="margin: auto; width: 500px; margin-top: 180px;" class="border border-top-0">
+    <div [formGroup]="form" class="row">
+        <div class="col-8">
+            <input type="text" class="form-control" formControlName="txNome" placeholder="Nome">
+        </div>
+        <div class="col">
+                <button class="btn btn-primary btn-block" (click)="save()">Adicionar</button>
+        </div>
+    </div>
+    <div style="margin-top: 8px;" class="row">
+      
+    </div>
+    <div style="margin-top: 9px;" class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Identificador</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let empresa of empresas | paginate: { id: 'pageAtual',
+                    itemsPerPage: 5,
+                    currentPage: pageAtual } ">
+                        <td>{{ empresa.codId }}</td>  
+                        <td>{{ empresa.txNome }}</td> 
+                        <td  class="btn btn-danger btn-sm" (click)="deletar(empresa.codId)">Deletar</td>
+                    </tr>
+                </tbody>
+                <tfoot *ngIf="!empresas.length">
+                    <p style="margin-top: 10px;">Nenhuma empresa cadastrada no banco ...</p>
+                </tfoot>
+            </table>
+            <div class="text-right">
+                <pagination-controls
+                id="pageAtual"
+                (pageChange)="pageAtual = $event"
+                previousLabel="Anterior"
+                nextLabel="Proximo"
+              ></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
